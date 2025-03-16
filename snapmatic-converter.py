@@ -5,7 +5,9 @@ home_directory = os.path.join(str(Path.home()) + "\\Saved Games\\CitizenFX\\GTA5
 
 for count, pgta in enumerate(os.listdir(home_directory)):    
     if pgta.startswith("PGTA"):
-        if os.path.exists(pgta + ".jpg") == False:
+        if os.path.exists("fotografias") == False:
+            os.makedirs("fotografias")
+        if os.path.exists("./fotografias/" + pgta + ".jpg") == False:
             print(pgta)
             photo = open(os.path.join(home_directory, pgta), "rb")
         
@@ -15,7 +17,7 @@ for count, pgta in enumerate(os.listdir(home_directory)):
                 photo.seek(i)
                 image_data += photo.read(1)
             
-            out_photo = open(pgta + ".jpg", "wb")
+            out_photo = open("./fotografias/" + pgta + ".jpg", "wb")
             out_photo = out_photo.write(image_data)
             photo.close()
 print("Todas las imagenes fueron convertidas")
